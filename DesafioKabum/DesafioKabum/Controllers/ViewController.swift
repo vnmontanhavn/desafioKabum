@@ -26,11 +26,12 @@ class ViewController: UIViewController {
 
 extension ViewController: CallResponseDelegate {
     func success<T>(response: T) {
-        //
+        ViewController.page += 1
+        print(ViewController.page)
     }
     
     func fail(errorMessage: String) {
-        //
+        print(errorMessage)
     }
     
     

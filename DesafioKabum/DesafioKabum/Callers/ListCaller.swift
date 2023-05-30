@@ -20,7 +20,19 @@ class ListCaller: CallerProtocol {
                                          "pagina" : page]
         
         AF.request("https://servicespub.prod.api.aws.grupokabum.com.br/home/v1/home/produto", method: .get, parameters: paramiters).responseJSON { response in
-            print(response)
+            do {
+                let decoder = JSONDecoder()
+                if let value = response.data {
+                    let myResponse = try decoder.decode(ProductListModel.self, from: value)
+                    print(myResponse)
+                    self.delegate?.success(response: myResponse)
+                } else {
+                    self.delegate?.fail(errorMessage: response.error?.localizedDescription ?? "Um erro aconteceu")
+                }
+            }
+            catch {
+                self.delegate?.fail(errorMessage: error.localizedDescription)
+            }
         }
     }
     

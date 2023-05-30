@@ -1,0 +1,41 @@
+{
+        "codigo": 334039,
+        "img": "https://images9.kabum.com.br/produtos/fotos/334039/notebook-asus-amd-ryzen-5-3500u-8gb-ram-ssd-256gb-15-6-radeon-vega-8-windows-11-home-cinza-m515da-br1213w_1651244602_m.jpg",
+        "nome": "Notebook Asus AMD Ryzen 5-3500U, 8GB RAM, SSD 256GB, 15,6', Radeon Vega 8, Windows 11 Home, Cinza - M515DA-BR1213W", 
+        "alt": 334039,
+        "tem_frete_gratis": false,
+        "frete_gratis_somente_prime": false,
+        "link_descricao": "/produto/334039/notebook-asus-amd-ryzen-5-3500u-8gb-ram-ssd-256gb-15-6-radeon-vega-8-windows-11-home-cinza-m515da-br1213w",
+        "preco_antigo": "4440.00",
+        "preco": "3052.62",
+        "preco_prime": "2899.99",
+        "preco_desconto": "2899.99",
+        "preco_desconto_prime": "2754.99",
+        "preco_formatado": "R$ 3052,62",
+        "preco_prime_formatado": "R$ 2899,99",
+        "preco_desconto_formatado": "R$ 2899,99",
+        "preco_desconto_prime_formatado": "R$ 2754,99",
+        "avaliacao_numero": 191,
+        "avaliacao_nota": 5,
+        "is_openbox": true,
+        "fabricante": {
+                    "codigo": 1,
+                    "nome": "ASUS",
+                    "img": "https://images9.kabum.com.br/produtos/fabricantes/logo-asus.jpg"
+                },
+        "menu": "Notebooks/Notebook Asus",
+        "disponibilidade": true,
+        "oferta": {
+                "codigo": "33h/fEKQS9KcM",
+                "di": "7f35179c6354158d056ecfcc81694188e2273604",
+                "evento_codigo": 269, "data_inicio": 1685402460,
+                "data_fim": 1685617200,
+                "quantidade": 371,
+                "evento": "Mega Maio",
+                "logar": 0
+            },
+        "vendedor_nome": "",
+        "offer_id": "",
+        "id_seller": 0,
+        "porcentagem_desconto": "5%"
+} 
