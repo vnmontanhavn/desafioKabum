@@ -1,0 +1,6 @@
+module Pods_DesafioKabum {
+  umbrella header "Pods-DesafioKabum-umbrella.h"
+
+  export *
+  module * { export * }
+}
