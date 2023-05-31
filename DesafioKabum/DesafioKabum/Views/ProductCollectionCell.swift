@@ -11,24 +11,54 @@ import SDWebImage
 class ProductCollectionCell: UICollectionViewCell {
     let imageView = UIImageView(frame: .zero )
     let nameLabel = UILabel()
-//    let rankView = UIView()
     let priceLabel = UILabel()
+    let oldPriceLabel = UILabel()
+    let discount = UILabel()
+    let ratingLabel = UILabel()
+    var model: CellViewModel?
+    
+    
+    func setupWith(model: CellViewModel) {
+        self.model = model
+        imageSetup(url: model.url)
+        LabelsSetup()
+        setupBackGround()
+        setupView()
+        setupConstrents()
+    }
     
     func setup(name:String, url:URL?, ranking:Int, price:String) {
+        imageSetup(url: url)
+        nameLabel.text = name
+        priceLabel.text = price
+        setupBackGround()
+        setupView()
+        setupConstrents()
+    }
+    
+    func LabelsSetup() {
+        guard let model = self.model else {
+            return
+        }
+        nameLabel.text = model.name
+        priceLabel.text = model.fullPrice
+        oldPriceLabel.text = model.discountPrice
+        discount.text = model.discount
+        ratingLabel.text = model.rating
+        configLabels()
+    }
+    
+    func configLabels() {
+        nameLabel.font = UIFont(name: "Helvetica-Bold", size: 10)
+        nameLabel.numberOfLines = 3
+        priceLabel.font = UIFont(name: "Helvetica-Bold", size: 12)
+        priceLabel.textColor = UIColor(hex: 0x277BBE)
+    }
+    
+    func imageSetup(url: URL?) {
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.contentMode = .scaleAspectFit
         imageView.sd_setImage(with: url, placeholderImage: UIImage(named: "placeholder"))
-//        rankView.frame = CGRect(x: 0, y: 0, width: 200, height: 15)
-//        rankView.value = ranking
-        nameLabel.text = name
-        priceLabel.text = price
-        self.contentView.addSubview(imageView)
-        self.contentView.addSubview(nameLabel)
-//        self.contentView.addSubview(rankView)
-        self.contentView.addSubview(priceLabel)
-        self.setupBackGround()
-        setupView()
-        setupConstrents()
     }
     
     func setupBackGround() {
@@ -38,32 +68,26 @@ class ProductCollectionCell: UICollectionViewCell {
     }
     
     func setupView() {
-        nameLabel.font = UIFont(name: "Helvetica-Bold", size: 10)
-        nameLabel.numberOfLines = 3
-//        rankView.tintColor = UIColor(hex: 0xFFB416)
-        priceLabel.font = UIFont(name: "Helvetica-Bold", size: 12)
-        priceLabel.textColor = UIColor(hex: 0x277BBE)
+        self.contentView.addSubview(imageView)
+        self.contentView.addSubview(nameLabel)
+        self.contentView.addSubview(priceLabel)
     }
     
     func setupConstrents() {
         imageView.translatesAutoresizingMaskIntoConstraints = false
         nameLabel.translatesAutoresizingMaskIntoConstraints = false
-//        rankView.translatesAutoresizingMaskIntoConstraints = false
         priceLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             imageView.topAnchor.constraint(equalTo: topAnchor),
-            imageView.leftAnchor.constraint(equalTo: leftAnchor),
-            imageView.rightAnchor.constraint(equalTo: rightAnchor),
+            imageView.leftAnchor.constraint(equalTo: leftAnchor, constant: 8),
+            imageView.rightAnchor.constraint(equalTo: rightAnchor, constant: -8),
             nameLabel.topAnchor.constraint(equalTo: imageView.bottomAnchor),
-            nameLabel.leftAnchor.constraint(equalTo: leftAnchor),
-            nameLabel.rightAnchor.constraint(equalTo: rightAnchor),
-//            rankView.topAnchor.constraint(equalTo: nameLabel.bottomAnchor),
-//            rankView.leftAnchor.constraint(equalTo: leftAnchor),
-//            rankView.rightAnchor.constraint(equalTo: rightAnchor),
+            nameLabel.leftAnchor.constraint(equalTo: leftAnchor, constant: 8),
+            nameLabel.rightAnchor.constraint(equalTo: rightAnchor, constant: -8),
             priceLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor,constant: 15),
-            priceLabel.leftAnchor.constraint(equalTo: leftAnchor),
-            priceLabel.rightAnchor.constraint(equalTo: rightAnchor),
-            priceLabel.bottomAnchor.constraint(equalTo: bottomAnchor)
+            priceLabel.leftAnchor.constraint(equalTo: leftAnchor, constant: 8),
+            priceLabel.rightAnchor.constraint(equalTo: rightAnchor, constant: -8),
+            priceLabel.bottomAnchor.constraint(equalTo: bottomAnchor,constant: -8)
         ])
     }
     
@@ -71,11 +95,5 @@ class ProductCollectionCell: UICollectionViewCell {
     ///
     func moneyValueString(value: Double) -> String {
         return String(format: "%.2f", value)
-    }
-}
-
-extension ProductCollectionCell: CellProtocol {
-    func height() -> CGFloat {
-        return 500
     }
 }

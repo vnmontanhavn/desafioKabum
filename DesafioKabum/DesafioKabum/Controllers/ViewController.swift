@@ -87,7 +87,7 @@ extension ViewController: ActivityProtocol {
     }
     
     func stopLoading() {
-//        indicator.stopAnimating()
+        indicator.stopAnimating()
     }
     
     func isLoading() -> Bool {

@@ -48,7 +48,6 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource {
                 self.indicator.centerXAnchor.constraint(equalTo: footerView.centerXAnchor),
                 self.indicator.centerYAnchor.constraint(equalTo: footerView.centerYAnchor)
                 ])
-            footerView.backgroundColor = UIColor.green
             return footerView
         }
         return UICollectionReusableView()
