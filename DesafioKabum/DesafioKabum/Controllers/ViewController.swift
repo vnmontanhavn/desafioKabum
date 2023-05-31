@@ -13,9 +13,11 @@ class ViewController: UIViewController {
             frame: .zero,
             collectionViewLayout: ProductsFlowLayout()
         )
+    lazy var indicator: UIActivityIndicatorView = UIActivityIndicatorView(style: .large)
     private var model: ProductListModel?
     var caller: CallerProtocol?
     var products: [ProductModel] = []
+    var stop = false
     
     static var page = 1
     
@@ -29,6 +31,7 @@ class ViewController: UIViewController {
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        indicator.startAnimating()
         self.caller?.callList(page: ViewController.page)
     }
 
@@ -54,15 +57,20 @@ class ViewController: UIViewController {
 
 extension ViewController: CallResponseDelegate {
     func success<T>(response: T) {
+        indicator.stopAnimating()
         ViewController.page += 1
         print(ViewController.page)
         if let response = response as? ProductListModel {
+            if response.products?.count == 0 {
+                stop = true
+            }
             self.products.append(contentsOf: response.products ?? [])
             collectionView.reloadData()
         }
     }
     
     func fail(errorMessage: String) {
+        indicator.stopAnimating()
         print(errorMessage)
     }
     
