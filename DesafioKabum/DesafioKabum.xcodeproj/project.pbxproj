@@ -25,6 +25,8 @@
 		302D7B582A26FB7100C726F4 /* ColorHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 302D7B572A26FB7000C726F4 /* ColorHandler.swift */; };
 		302D7B5A2A26FBD100C726F4 /* ProductsFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 302D7B592A26FBD100C726F4 /* ProductsFlowLayout.swift */; };
 		302D7B5E2A26FD2700C726F4 /* ListCollectionViewDatasource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 302D7B5D2A26FD2700C726F4 /* ListCollectionViewDatasource.swift */; };
+		302D7B602A27A16200C726F4 /* IndicatorCollectionFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 302D7B5F2A27A16200C726F4 /* IndicatorCollectionFooterView.swift */; };
+		302D7B622A27CEF400C726F4 /* ActivityProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 302D7B612A27CEF400C726F4 /* ActivityProtocol.swift */; };
 		3605538E2BD68039FE23E184 /* libPods-DesafioKabumTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 68B93C8C57E8D438695CFFDB /* libPods-DesafioKabumTests.a */; };
 		5A7784013440673C676659F2 /* libPods-DesafioKabum.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C1EDE4A4B872C1C5F5F4506 /* libPods-DesafioKabum.a */; };
 /* End PBXBuildFile section */
@@ -71,6 +73,8 @@
 		302D7B572A26FB7000C726F4 /* ColorHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorHandler.swift; sourceTree = "<group>"; };
 		302D7B592A26FBD100C726F4 /* ProductsFlowLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductsFlowLayout.swift; sourceTree = "<group>"; };
 		302D7B5D2A26FD2700C726F4 /* ListCollectionViewDatasource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListCollectionViewDatasource.swift; sourceTree = "<group>"; };
+		302D7B5F2A27A16200C726F4 /* IndicatorCollectionFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndicatorCollectionFooterView.swift; sourceTree = "<group>"; };
+		302D7B612A27CEF400C726F4 /* ActivityProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityProtocol.swift; sourceTree = "<group>"; };
 		5E6466824907B1C9690AC17F /* Pods-DesafioKabum.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DesafioKabum.release.xcconfig"; path = "Target Support Files/Pods-DesafioKabum/Pods-DesafioKabum.release.xcconfig"; sourceTree = "<group>"; };
 		68B93C8C57E8D438695CFFDB /* libPods-DesafioKabumTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-DesafioKabumTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A71EC0252D5F433CE95DB2A4 /* Pods-DesafioKabum.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DesafioKabum.debug.xcconfig"; path = "Target Support Files/Pods-DesafioKabum/Pods-DesafioKabum.debug.xcconfig"; sourceTree = "<group>"; };
@@ -175,6 +179,7 @@
 			children = (
 				302D7B4E2A26F8B200C726F4 /* CellsProtocols.swift */,
 				302D7B3D2A268E7000C726F4 /* CallerProtocols.swift */,
+				302D7B612A27CEF400C726F4 /* ActivityProtocol.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -194,6 +199,7 @@
 			children = (
 				302D7B562A26FB4A00C726F4 /* Handlers */,
 				302D7B542A26FA5100C726F4 /* ProductCollectionCell.swift */,
+				302D7B5F2A27A16200C726F4 /* IndicatorCollectionFooterView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -448,12 +454,14 @@
 			files = (
 				302D7B582A26FB7100C726F4 /* ColorHandler.swift in Sources */,
 				302D7B5A2A26FBD100C726F4 /* ProductsFlowLayout.swift in Sources */,
+				302D7B622A27CEF400C726F4 /* ActivityProtocol.swift in Sources */,
 				302D7B462A2690B600C726F4 /* ListCaller.swift in Sources */,
 				302D7B5E2A26FD2700C726F4 /* ListCollectionViewDatasource.swift in Sources */,
 				302D7B4B2A26A0CF00C726F4 /* ProductModel.swift in Sources */,
 				302D7B3E2A268E7000C726F4 /* CallerProtocols.swift in Sources */,
 				302D7B122A266C4600C726F4 /* ViewController.swift in Sources */,
 				302D7B4D2A26A54000C726F4 /* ProductListModel.swift in Sources */,
+				302D7B602A27A16200C726F4 /* IndicatorCollectionFooterView.swift in Sources */,
 				302D7B0E2A266C4600C726F4 /* AppDelegate.swift in Sources */,
 				302D7B552A26FA5100C726F4 /* ProductCollectionCell.swift in Sources */,
 				302D7B102A266C4600C726F4 /* SceneDelegate.swift in Sources */,

@@ -24,6 +24,8 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor(hex: 0xFAFAFB)
+        self.view.addSubview(indicator)
+        indicator.hidesWhenStopped = true
         setupCollectionView()
         setupConstraints()
         caller = ListCaller(delegate: self)
@@ -31,14 +33,18 @@ class ViewController: UIViewController {
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        indicator.startAnimating()
+        startLoading()
         self.caller?.callList(page: ViewController.page)
     }
 
     func setupCollectionView() {
         collectionView.delegate = self
         collectionView.dataSource = self
-        collectionView.register(ProductCollectionCell.self, forCellWithReuseIdentifier: ProductCollectionCell().getIdentifier())
+        collectionView.register(ProductCollectionCell.self,
+                                forCellWithReuseIdentifier: ProductCollectionCell().getIdentifier())
+        collectionView.register(IndicatorCollectionFooterView.self,
+                                forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter,
+                                withReuseIdentifier: IndicatorCollectionFooterView.identifier)
         collectionView.backgroundColor = .clear
         self.view.addSubview(collectionView)
         
@@ -57,7 +63,7 @@ class ViewController: UIViewController {
 
 extension ViewController: CallResponseDelegate {
     func success<T>(response: T) {
-        indicator.stopAnimating()
+        stopLoading()
         ViewController.page += 1
         print(ViewController.page)
         if let response = response as? ProductListModel {
@@ -70,9 +76,21 @@ extension ViewController: CallResponseDelegate {
     }
     
     func fail(errorMessage: String) {
-        indicator.stopAnimating()
+        stopLoading()
         print(errorMessage)
     }
+}
+
+extension ViewController: ActivityProtocol {
+    func startLoading() {
+        indicator.startAnimating()
+    }
     
+    func stopLoading() {
+//        indicator.stopAnimating()
+    }
     
+    func isLoading() -> Bool {
+        return indicator.isAnimating
+    }
 }

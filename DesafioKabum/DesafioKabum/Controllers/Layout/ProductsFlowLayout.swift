@@ -14,6 +14,7 @@ class ProductsFlowLayout: UICollectionViewFlowLayout {
             self.minimumLineSpacing = 12
             self.scrollDirection = .vertical
             self.sectionInset = .zero
+            
         }
     @available(*, unavailable)
     required init?(coder: NSCoder) {
@@ -25,6 +26,7 @@ class ProductsFlowLayout: UICollectionViewFlowLayout {
         super.prepare()
         if let collectionView = collectionView {
             itemSize = CGSize(width: (collectionView.frame.size.width/2) - 6, height: 275)
+            footerReferenceSize = CGSize(width: collectionView.frame.size.width, height: 100)
         }
     }
 
@@ -34,5 +36,4 @@ class ProductsFlowLayout: UICollectionViewFlowLayout {
         itemSize = newBounds.size
         return true
     }
-    
 }
