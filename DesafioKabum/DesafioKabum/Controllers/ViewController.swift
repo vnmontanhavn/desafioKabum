@@ -21,11 +21,8 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = .white
-        self.view.addSubview(collectionView)
-        collectionView.delegate = self
-        collectionView.dataSource = self
-        collectionView.register(ProductCollectionCell.self, forCellWithReuseIdentifier: ProductCollectionCell().getIdentifier())
+        self.view.backgroundColor = UIColor(hex: 0xFAFAFB)
+        setupCollectionView()
         setupConstraints()
         caller = ListCaller(delegate: self)
         // Do any additional setup after loading the view.
@@ -35,6 +32,15 @@ class ViewController: UIViewController {
         self.caller?.callList(page: ViewController.page)
     }
 
+    func setupCollectionView() {
+        collectionView.delegate = self
+        collectionView.dataSource = self
+        collectionView.register(ProductCollectionCell.self, forCellWithReuseIdentifier: ProductCollectionCell().getIdentifier())
+        collectionView.backgroundColor = .clear
+        self.view.addSubview(collectionView)
+        
+    }
+    
     func setupConstraints(){
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([

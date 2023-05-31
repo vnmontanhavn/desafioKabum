@@ -11,7 +11,7 @@ class ProductsFlowLayout: UICollectionViewFlowLayout {
     override init() {
             super.init()
             self.minimumInteritemSpacing = 1
-            self.minimumLineSpacing = 1
+            self.minimumLineSpacing = 12
             self.scrollDirection = .vertical
             self.sectionInset = .zero
         }
