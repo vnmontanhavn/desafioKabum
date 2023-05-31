@@ -16,7 +16,8 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ProductCollectionCell().getIdentifier(), for: indexPath)
         if let pcell = cell as? ProductCollectionCell {
             let item = self.products[indexPath.item]
-            pcell.setup(name: item.name ?? "", url: imageURLs(urlStr: item.image ?? ""), ranking: item.reviewScore ?? 0 , price: item.price ?? "")
+            let model = CellViewModel(name: item.name, url: imageURLs(urlStr: item.image), fullPrice: item.price, discountPrice: item.discountPrice, discount: item.percentDiscount, rating: item.reviewScore)
+            pcell.setupWith(model: model)
         }
         return cell
     }
@@ -54,8 +55,10 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     }
     
     ///Metodo feito com o intuito de resolver possiveis problemas ao gerar uma URL, visto que o sistema prefere urls seguras.(https)
-    func imageURLs(urlStr: String) -> URL? {
-        let fixUrl = urlStr.replacingOccurrences(of: "http://", with: "https://")
+    func imageURLs(urlStr: String?) -> URL? {
+        guard let fixUrl = urlStr?.replacingOccurrences(of: "http://", with: "https://") else {
+            return nil
+        }
         if let url = URL(string: fixUrl){
         return url
         }
