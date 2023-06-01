@@ -17,6 +17,8 @@ struct ProductModel: Decodable {
     var reviewQtd: Int?
     var reviewScore: Int?
     var percentDiscount: String?
+    var producer: ProducerModel?
+    var availability: Bool?
     private enum CodingKeys: String, CodingKey {
         case code = "codigo"
         case image = "img"
@@ -27,5 +29,11 @@ struct ProductModel: Decodable {
         case reviewQtd = "avaliacao_numero"
         case reviewScore = "avaliacao_nota"
         case percentDiscount = "porcentagem_desconto"
+        case producer = "fabricante"
+        case availability = "disponibilidade"
     }
+}
+
+struct ProducerModel: Decodable {
+    var name: String?
 }

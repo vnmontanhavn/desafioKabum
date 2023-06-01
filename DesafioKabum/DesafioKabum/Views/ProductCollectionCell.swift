@@ -68,7 +68,7 @@ class ProductCollectionCell: UICollectionViewCell {
     //Configura o fundo da célula, incluindo a curvatura das pontas
     func setupBackGround() {
         self.backgroundColor = .white
-        shadowDecorate()
+        shadowDecorate(view: self)
     }
     ///Faz a configuração da View, incluindo as labels como subviews e escondendo ou não as labels de preço antigo e disconto com base nos valores.
     ///Se o valor com disconto e valor cheio forem iguais, não tem desconto e assim esses campos devem ser removidos.
@@ -104,15 +104,17 @@ class ProductCollectionCell: UICollectionViewCell {
     }
     
     func setupConstraintImageView() -> [NSLayoutConstraint] {
-        return [imageView.topAnchor.constraint(equalTo: topAnchor),
-         imageView.leftAnchor.constraint(equalTo: leftAnchor, constant: 8),
-         imageView.rightAnchor.constraint(equalTo: rightAnchor, constant: -8)]
+        return [imageView.topAnchor.constraint(equalTo: topAnchor, constant: 8),
+                imageView.leftAnchor.constraint(equalTo: leftAnchor, constant: 8),
+                imageView.rightAnchor.constraint(equalTo: nameLabel.leftAnchor, constant: -8),
+                imageView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -8),
+                imageView.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.5,constant: -20)
+        ]
         
     }
     
     func setupConstraintNameLabel() -> [NSLayoutConstraint] {
-        return [nameLabel.topAnchor.constraint(equalTo: imageView.bottomAnchor),
-         nameLabel.leftAnchor.constraint(equalTo: leftAnchor, constant: 8),
+        return [nameLabel.topAnchor.constraint(equalTo: imageView.topAnchor),
          nameLabel.rightAnchor.constraint(equalTo: rightAnchor, constant: -8)]
     }
     
@@ -148,20 +150,24 @@ class ProductCollectionCell: UICollectionViewCell {
          discount.bottomAnchor.constraint(equalTo: priceLabel.bottomAnchor)]
     }
     
-    func shadowDecorate() {
-            let radius: CGFloat = 10
-            contentView.layer.cornerRadius = radius
-            contentView.layer.borderWidth = 6
-            contentView.layer.borderColor = UIColor.clear.cgColor
-            contentView.layer.masksToBounds = true
-        
-            layer.shadowColor = UIColor.black.cgColor
-            layer.shadowOffset = CGSize(width: 0, height: 1.0)
-            layer.shadowRadius = 2.0
-            layer.shadowOpacity = 0.5
-            layer.masksToBounds = false
-            layer.shadowPath = UIBezierPath(roundedRect: bounds, cornerRadius: radius).cgPath
-            layer.cornerRadius = radius
+    override func layoutSubviews() {
+        shadowDecorate(view: imageView)
+    }
+    
+    func shadowDecorate(view: UIView) {
+        let radius: CGFloat = 10
+        //corner
+        view.layer.cornerRadius = radius
+        view.layer.borderWidth = 1.0
+        view.layer.borderColor = UIColor.clear.cgColor
+        //shadow
+        view.layer.backgroundColor = UIColor.white.cgColor
+        view.layer.shadowColor = UIColor.black.cgColor
+        view.layer.shadowOffset = CGSize(width: 0.0, height: 1.0)
+        view.layer.shadowRadius = 2.0
+        view.layer.shadowOpacity = 0.5
+        view.layer.masksToBounds = false
+        view.layer.shadowPath = UIBezierPath(roundedRect: view.bounds, cornerRadius: radius).cgPath
         }
 }
 
