@@ -14,7 +14,7 @@ class ErrorView: UIView {
     private var hideConstraint: NSLayoutConstraint?
     private var viewController: UIViewController?
     
-    ///Faz a configuração da view.
+    ///Faz a configuração da view. Ele foi feito para ser generico e poder ser usado em qualquer viewController.
     func setup(viewController: UIViewController) {
         viewController.view.addSubview(self)
         self.viewController = viewController
