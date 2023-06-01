@@ -43,8 +43,9 @@ class ProductCollectionCell: UICollectionViewCell {
     }
     ///Configura aparencia das Labels
     func configLabels() {
-        nameLabel.font = UIFont(name: "Helvetica-Bold", size: 10)
+        nameLabel.font = UIFont(name: "Helvetica", size: 14)
         nameLabel.numberOfLines = 3
+        nameLabel.textColor = UIColor(hex: 0x43464C)
         priceLabel.font = UIFont(name: "Helvetica-Bold", size: 12)
         priceLabel.textColor = UIColor(hex: 0x277BBE)
         oldPriceLabel.font = UIFont(name: "Helvetica-Bold", size: 8)
