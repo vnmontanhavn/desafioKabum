@@ -1,4 +1,4 @@
-{
+{"produtos": [{
         "codigo": 334039,
         "img": "https://images9.kabum.com.br/produtos/fotos/334039/notebook-asus-amd-ryzen-5-3500u-8gb-ram-ssd-256gb-15-6-radeon-vega-8-windows-11-home-cinza-m515da-br1213w_1651244602_m.jpg",
         "nome": "Notebook Asus AMD Ryzen 5-3500U, 8GB RAM, SSD 256GB, 15,6', Radeon Vega 8, Windows 11 Home, Cinza - M515DA-BR1213W", 
@@ -38,4 +38,4 @@
         "offer_id": "",
         "id_seller": 0,
         "porcentagem_desconto": "5%"
-} 
+}], "flag_blackfriday": 0, "sucesso": true}

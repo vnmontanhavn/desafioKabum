@@ -9,13 +9,12 @@ import UIKit
 
 class ViewController: UIViewController {
     
-    private lazy var collectionView = UICollectionView(
+    lazy var collectionView = UICollectionView(
             frame: .zero,
             collectionViewLayout: ProductsFlowLayout()
         )
     lazy var indicator: UIActivityIndicatorView = UIActivityIndicatorView(style: .large)
     lazy var errorView = ErrorView()
-    private var model: ProductListModel?
     var caller: CallerProtocol?
     var products: [ProductModel] = []
     var stop = false

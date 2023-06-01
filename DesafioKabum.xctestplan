@@ -1,0 +1,37 @@
+{
+  "configurations" : [
+    {
+      "id" : "383A44F1-0999-494D-BF15-672861C5AA3B",
+      "name" : "Test Scheme Action",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "targetForVariableExpansion" : {
+      "containerPath" : "container:DesafioKabum.xcodeproj",
+      "identifier" : "302D7B092A266C4600C726F4",
+      "name" : "DesafioKabum"
+    }
+  },
+  "testTargets" : [
+    {
+      "parallelizable" : true,
+      "target" : {
+        "containerPath" : "container:DesafioKabum.xcodeproj",
+        "identifier" : "302D7B1F2A266C4700C726F4",
+        "name" : "DesafioKabumTests"
+      }
+    },
+    {
+      "parallelizable" : true,
+      "target" : {
+        "containerPath" : "container:DesafioKabum.xcodeproj",
+        "identifier" : "302D7B292A266C4700C726F4",
+        "name" : "DesafioKabumUITests"
+      }
+    }
+  ],
+  "version" : 1
+}
