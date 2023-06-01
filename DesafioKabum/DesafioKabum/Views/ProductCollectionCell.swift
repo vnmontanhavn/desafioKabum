@@ -92,37 +92,60 @@ class ProductCollectionCell: UICollectionViewCell {
         discount.translatesAutoresizingMaskIntoConstraints = false
         starRatingImg.translatesAutoresizingMaskIntoConstraints = false
         ratingLabel.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            imageView.topAnchor.constraint(equalTo: topAnchor),
-            imageView.leftAnchor.constraint(equalTo: leftAnchor, constant: 8),
-            imageView.rightAnchor.constraint(equalTo: rightAnchor, constant: -8),
-            nameLabel.topAnchor.constraint(equalTo: imageView.bottomAnchor),
-            nameLabel.leftAnchor.constraint(equalTo: leftAnchor, constant: 8),
-            nameLabel.rightAnchor.constraint(equalTo: rightAnchor, constant: -8),
-            priceLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor,constant: 15),
-            priceLabel.leftAnchor.constraint(equalTo: leftAnchor, constant: 8),
-            priceLabel.rightAnchor.constraint(equalTo: discount.leftAnchor, constant: -8),
-            priceLabel.bottomAnchor.constraint(equalTo: bottomAnchor,constant: -8),
-            priceLabel.widthAnchor.constraint(lessThanOrEqualTo: widthAnchor, constant: -60),
-            oldPriceLabel.bottomAnchor.constraint(equalTo: priceLabel.topAnchor),
-            oldPriceLabel.leftAnchor.constraint(equalTo: priceLabel.leftAnchor),
-            ratingLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -8),
-            ratingLabel.rightAnchor.constraint(equalTo: rightAnchor, constant: -8),
-            ratingLabel.widthAnchor.constraint(equalToConstant: 15),
-            ratingLabel.heightAnchor.constraint(equalToConstant: 15),
-            starRatingImg.bottomAnchor.constraint(equalTo: ratingLabel.bottomAnchor),
-            starRatingImg.rightAnchor.constraint(equalTo: ratingLabel.leftAnchor),
-            starRatingImg.widthAnchor.constraint(equalTo: ratingLabel.widthAnchor, multiplier: 1),
-            starRatingImg.topAnchor.constraint(equalTo: ratingLabel.topAnchor),
-            discount.rightAnchor.constraint(equalTo: starRatingImg.leftAnchor),
-            discount.bottomAnchor.constraint(equalTo: priceLabel.bottomAnchor)
-        ])
+        var constraints: [NSLayoutConstraint] = []
+        constraints.append(contentsOf: setupConstraintImageView())
+        constraints.append(contentsOf: setupConstraintNameLabel())
+        constraints.append(contentsOf: setupConstraintPriceLabel())
+        constraints.append(contentsOf: setupConstraintOldPriceLabel())
+        constraints.append(contentsOf: setupConstraintRatingLabel())
+        constraints.append(contentsOf: setupConstraintStarRatingImg())
+        constraints.append(contentsOf: setupConstraintsDiscount())
+        NSLayoutConstraint.activate(constraints)
     }
     
-    ///handler
-    ///
-    func moneyValueString(value: Double) -> String {
-        return String(format: "%.2f", value)
+    func setupConstraintImageView() -> [NSLayoutConstraint] {
+        return [imageView.topAnchor.constraint(equalTo: topAnchor),
+         imageView.leftAnchor.constraint(equalTo: leftAnchor, constant: 8),
+         imageView.rightAnchor.constraint(equalTo: rightAnchor, constant: -8)]
+        
+    }
+    
+    func setupConstraintNameLabel() -> [NSLayoutConstraint] {
+        return [nameLabel.topAnchor.constraint(equalTo: imageView.bottomAnchor),
+         nameLabel.leftAnchor.constraint(equalTo: leftAnchor, constant: 8),
+         nameLabel.rightAnchor.constraint(equalTo: rightAnchor, constant: -8)]
+    }
+    
+    func setupConstraintPriceLabel() -> [NSLayoutConstraint] {
+        return [priceLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor,constant: 15),
+         priceLabel.leftAnchor.constraint(equalTo: leftAnchor, constant: 8),
+         priceLabel.rightAnchor.constraint(equalTo: discount.leftAnchor, constant: -8),
+         priceLabel.bottomAnchor.constraint(equalTo: bottomAnchor,constant: -8),
+         priceLabel.widthAnchor.constraint(lessThanOrEqualTo: widthAnchor, constant: -60)]
+    }
+    
+    func setupConstraintOldPriceLabel() -> [NSLayoutConstraint] {
+        return [oldPriceLabel.bottomAnchor.constraint(equalTo: priceLabel.topAnchor),
+         oldPriceLabel.leftAnchor.constraint(equalTo: priceLabel.leftAnchor),]
+    }
+    
+    func setupConstraintRatingLabel() -> [NSLayoutConstraint] {
+        return [ratingLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -8),
+         ratingLabel.rightAnchor.constraint(equalTo: rightAnchor, constant: -8),
+         ratingLabel.widthAnchor.constraint(equalToConstant: 15),
+         ratingLabel.heightAnchor.constraint(equalToConstant: 15)]
+    }
+    
+    func setupConstraintStarRatingImg() -> [NSLayoutConstraint] {
+        return [starRatingImg.bottomAnchor.constraint(equalTo: ratingLabel.bottomAnchor),
+         starRatingImg.rightAnchor.constraint(equalTo: ratingLabel.leftAnchor),
+         starRatingImg.widthAnchor.constraint(equalTo: ratingLabel.widthAnchor, multiplier: 1),
+         starRatingImg.topAnchor.constraint(equalTo: ratingLabel.topAnchor)]
+    }
+    
+    func setupConstraintsDiscount() -> [NSLayoutConstraint] {
+        return [discount.rightAnchor.constraint(equalTo: starRatingImg.leftAnchor),
+         discount.bottomAnchor.constraint(equalTo: priceLabel.bottomAnchor)]
     }
 }
 

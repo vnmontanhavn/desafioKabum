@@ -23,6 +23,7 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.title = "Produtos"
         self.view.backgroundColor = UIColor(hex: 0xFAFAFB)
         self.view.addSubview(indicator)
         indicator.hidesWhenStopped = true
