@@ -10,7 +10,7 @@ import UIKit
 class ProductsFlowLayout: UICollectionViewFlowLayout {
     override init() {
             super.init()
-            self.minimumInteritemSpacing = 1
+            self.minimumInteritemSpacing = 6
             self.minimumLineSpacing = 12
             self.scrollDirection = .vertical
             self.sectionInset = .zero
@@ -26,7 +26,7 @@ class ProductsFlowLayout: UICollectionViewFlowLayout {
     override func prepare() {
         super.prepare()
         if let collectionView = collectionView {
-            itemSize = CGSize(width: (collectionView.frame.size.width/2) - 6, height: 275)
+            itemSize = CGSize(width: (collectionView.frame.size.width) - 12, height: 175)
             footerReferenceSize = CGSize(width: collectionView.frame.size.width, height: 100)
         }
     }
