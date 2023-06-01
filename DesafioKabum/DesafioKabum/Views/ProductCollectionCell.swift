@@ -68,8 +68,7 @@ class ProductCollectionCell: UICollectionViewCell {
     //Configura o fundo da célula, incluindo a curvatura das pontas
     func setupBackGround() {
         self.backgroundColor = .white
-        self.layer.masksToBounds = true
-        self.layer.cornerRadius = 6
+        shadowDecorate()
     }
     ///Faz a configuração da View, incluindo as labels como subviews e escondendo ou não as labels de preço antigo e disconto com base nos valores.
     ///Se o valor com disconto e valor cheio forem iguais, não tem desconto e assim esses campos devem ser removidos.
@@ -148,6 +147,22 @@ class ProductCollectionCell: UICollectionViewCell {
         return [discount.rightAnchor.constraint(equalTo: starRatingImg.leftAnchor),
          discount.bottomAnchor.constraint(equalTo: priceLabel.bottomAnchor)]
     }
+    
+    func shadowDecorate() {
+            let radius: CGFloat = 10
+            contentView.layer.cornerRadius = radius
+            contentView.layer.borderWidth = 6
+            contentView.layer.borderColor = UIColor.clear.cgColor
+            contentView.layer.masksToBounds = true
+        
+            layer.shadowColor = UIColor.black.cgColor
+            layer.shadowOffset = CGSize(width: 0, height: 1.0)
+            layer.shadowRadius = 2.0
+            layer.shadowOpacity = 0.5
+            layer.masksToBounds = false
+            layer.shadowPath = UIBezierPath(roundedRect: bounds, cornerRadius: radius).cgPath
+            layer.cornerRadius = radius
+        }
 }
 
 extension ProductCollectionCell: CellProtocol {
