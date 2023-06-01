@@ -14,6 +14,7 @@ class ViewController: UIViewController {
             collectionViewLayout: ProductsFlowLayout()
         )
     lazy var indicator: UIActivityIndicatorView = UIActivityIndicatorView(style: .large)
+    lazy var errorView = ErrorView()
     private var model: ProductListModel?
     var caller: CallerProtocol?
     var products: [ProductModel] = []
@@ -30,7 +31,7 @@ class ViewController: UIViewController {
         setupCollectionView()
         setupConstraints()
         caller = ListCaller(delegate: self)
-        // Do any additional setup after loading the view.
+        errorView.setup(viewController: self)
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -79,6 +80,7 @@ extension ViewController: CallResponseDelegate {
     func fail(errorMessage: String) {
         stopLoading()
         print(errorMessage)
+        errorView.showError(message: errorMessage)
     }
 }
 
