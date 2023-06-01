@@ -18,7 +18,6 @@ class ViewController: UIViewController {
     var caller: CallerProtocol?
     var products: [ProductModel] = []
     var stop = false
-    
     static var page = 1
     
     override func viewDidLoad() {
@@ -37,7 +36,7 @@ class ViewController: UIViewController {
         startLoading()
         self.caller?.callList(page: ViewController.page)
     }
-
+    ///Faz as configurações da collectionview e a coloca na view
     func setupCollectionView() {
         collectionView.delegate = self
         collectionView.dataSource = self
@@ -50,7 +49,7 @@ class ViewController: UIViewController {
         self.view.addSubview(collectionView)
         
     }
-    
+    //Configura as constraints da collectionview
     func setupConstraints(){
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
@@ -63,6 +62,7 @@ class ViewController: UIViewController {
 }
 
 extension ViewController: CallResponseDelegate {
+    ///Metodo chamado pela classe de chamada quando o retorno for um sucesso
     func success<T>(response: T) {
         stopLoading()
         ViewController.page += 1
@@ -75,14 +75,14 @@ extension ViewController: CallResponseDelegate {
             collectionView.reloadData()
         }
     }
-    
+    ///Metodo chamado pela classe de chamadas quando o retorno for um erro
     func fail(errorMessage: String) {
         stopLoading()
         print(errorMessage)
         errorView.showError(message: errorMessage)
     }
 }
-
+///Metodos para facilitar o uso do Activity Indicator
 extension ViewController: ActivityProtocol {
     func startLoading() {
         indicator.startAnimating()

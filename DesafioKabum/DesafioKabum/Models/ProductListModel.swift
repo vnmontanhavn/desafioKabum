@@ -7,7 +7,7 @@
 
 import Foundation
 
-
+///Modelo da Lista
 struct ProductListModel: Decodable {
     var products: [ProductModel]?
     var blackFriday: Int?

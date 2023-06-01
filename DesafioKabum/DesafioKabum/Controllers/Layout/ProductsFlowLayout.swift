@@ -21,7 +21,8 @@ class ProductsFlowLayout: UICollectionViewFlowLayout {
         fatalError("init(coder:) has not been implemented")
     }
     
-    // Tells the layout object to update the current layout.
+    /// Tells the layout object to update the current layout.
+    /// Tells the size of cells and Footer
     override func prepare() {
         super.prepare()
         if let collectionView = collectionView {

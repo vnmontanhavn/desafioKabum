@@ -13,7 +13,11 @@ class ListCaller: CallerProtocol {
     required init(delegate: CallResponseDelegate?) {
         self.delegate = delegate
     }
-    
+    ///Faz a chamada da API fazendo um Get passando os parametros
+    ///app: int
+    ///limite: int
+    ///pagina: int
+    ///Recebendo uma lista de produtos
     func callList(page: Int) {
         var paramiters: [String: Any] = ["app" : 1,
                                          "limite" : 10,

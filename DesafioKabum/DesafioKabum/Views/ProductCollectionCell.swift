@@ -18,7 +18,7 @@ class ProductCollectionCell: UICollectionViewCell {
     let starRatingImg = UIImageView(frame: .zero )
     var model: CellViewModel?
     
-    
+    ///Faz o setup quando receber a célula
     func setupWith(model: CellViewModel) {
         self.model = model
         imageSetup(url: model.url)
@@ -27,7 +27,7 @@ class ProductCollectionCell: UICollectionViewCell {
         setupView()
         setupConstrents()
     }
-    
+    ///Fa o Setup das Labels, colocando os textos nas Labels corretas
     func LabelsSetup() {
         guard let model = self.model else {
             return
@@ -41,7 +41,7 @@ class ProductCollectionCell: UICollectionViewCell {
         }
         configLabels()
     }
-    
+    ///Configura aparencia das Labels
     func configLabels() {
         nameLabel.font = UIFont(name: "Helvetica-Bold", size: 10)
         nameLabel.numberOfLines = 3
@@ -56,7 +56,7 @@ class ProductCollectionCell: UICollectionViewCell {
         priceLabel.font = UIFont(name: "Helvetica-Bold", size: 10)
         priceLabel.textColor = UIColor(hex: 0x277BBE)
     }
-    
+    //Faz o setup das imagens. Sendo uma dinamica vinda da URL e a outra é a imagem da estrela das avaliações
     func imageSetup(url: URL?) {
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.contentMode = .scaleAspectFit
@@ -65,13 +65,14 @@ class ProductCollectionCell: UICollectionViewCell {
         starRatingImg.contentMode = .scaleAspectFit
         starRatingImg.image = UIImage(named: "star")
     }
-    
+    //Configura o fundo da célula, incluindo a curvatura das pontas
     func setupBackGround() {
         self.backgroundColor = .white
         self.layer.masksToBounds = true
         self.layer.cornerRadius = 6
     }
-    
+    ///Faz a configuração da View, incluindo as labels como subviews e escondendo ou não as labels de preço antigo e disconto com base nos valores.
+    ///Se o valor com disconto e valor cheio forem iguais, não tem desconto e assim esses campos devem ser removidos.
     func setupView() {
         self.contentView.addSubview(imageView)
         self.contentView.addSubview(nameLabel)
@@ -83,7 +84,7 @@ class ProductCollectionCell: UICollectionViewCell {
         oldPriceLabel.isHidden = oldPriceLabel.text == priceLabel.text
         discount.isHidden = oldPriceLabel.text == priceLabel.text
     }
-    
+    //Configura as constraints
     func setupConstrents() {
         imageView.translatesAutoresizingMaskIntoConstraints = false
         nameLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -150,5 +151,5 @@ class ProductCollectionCell: UICollectionViewCell {
 }
 
 extension ProductCollectionCell: CellProtocol {
-    //só pra conformar com o protocolo
+    ///só pra conformar com o protocolo, pois ele facilita receber o identifier para registro na collectionView.
 }

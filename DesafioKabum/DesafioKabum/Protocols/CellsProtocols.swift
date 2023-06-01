@@ -8,12 +8,12 @@
 import Foundation
 import UIKit
 
-//protocolo unificado para as celulas, é usado pela tableview e pelo builder
+//protocolo unificado para as celulas.
 protocol CellProtocol {
     func getIdentifier() -> String
 }
 
-//implementaçoes que são defaut e ultilitarias são fetas aqui
+//implementaçoes que são defaut.
 extension CellProtocol {
     func getIdentifier() -> String {
         return String(describing: type(of: self))

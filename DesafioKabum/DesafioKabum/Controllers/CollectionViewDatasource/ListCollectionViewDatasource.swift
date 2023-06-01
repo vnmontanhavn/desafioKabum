@@ -8,22 +8,25 @@
 import Foundation
 import UIKit
 
+///Implementa métodos de Delegate e DataSource da collectionView
 extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+    ///Retorna a qtd de celulas igual a qtd de elementos no array de produtos
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return  self.products.count
     }
+    ///Retorna célula com base nos produtos do array
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ProductCollectionCell().getIdentifier(), for: indexPath)
         if let pcell = cell as? ProductCollectionCell {
             let item = self.products[indexPath.item]
-            let model = CellViewModel(name: item.name, url: imageURLs(urlStr: item.image), fullPrice: item.price, discountPrice: item.discountPrice, discount: item.percentDiscount, rating: item.reviewScore)
+            let model = viewModelFrom(model: item)
             pcell.setupWith(model: model)
         }
         return cell
     }
-    
+    ///Caso houvesse uma tela de detalhes aqui seria onde implementaria o push para tela de detalhes.
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        //
+        //Ação de toque para abrir tela de detalhes.
     }
     
     ///Esse método serve para identificar quando estamos para chegar no fim da pagina
@@ -36,7 +39,7 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource {
         }
     }
     
-    
+    ///Método para colocar o Footer na CollectionView, ele tbm é usado para fazer o Header caso fosse nescessario.
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         
         if kind == UICollectionView.elementKindSectionFooter {
@@ -52,6 +55,11 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource {
             return footerView
         }
         return UICollectionReusableView()
+    }
+    
+    ///Método para criar o ViewModel da célula com base nas informações do produto.
+    func viewModelFrom(model: ProductModel) -> CellViewModel{
+        return CellViewModel(name: model.name, url: imageURLs(urlStr: model.image), fullPrice: model.price, discountPrice: model.discountPrice, discount: model.percentDiscount, rating: model.reviewScore)
     }
     
     ///Metodo feito com o intuito de resolver possiveis problemas ao gerar uma URL, visto que o sistema prefere urls seguras.(https)

@@ -14,6 +14,7 @@ class ErrorView: UIView {
     private var hideConstraint: NSLayoutConstraint?
     private var viewController: UIViewController?
     
+    ///Faz a configuração da view.
     func setup(viewController: UIViewController) {
         viewController.view.addSubview(self)
         self.viewController = viewController
@@ -27,7 +28,7 @@ class ErrorView: UIView {
         self.backgroundColor = .red
         
     }
-    
+    ///Configura Constraints
     private func setupConstraints() {
         self.translatesAutoresizingMaskIntoConstraints = false
         textLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -47,8 +48,10 @@ class ErrorView: UIView {
             ])
         hideError()
     }
+    ///Método para mostrar a view de erro
     func showError(message: String) {
         viewController?.navigationController?.setNavigationBarHidden(true, animated: true)
+        self.isHidden = false
         ErrorView.animate(withDuration: 2, delay: 0.5) {
             self.textLabel.text = message
             self.hideConstraint?.isActive = false
@@ -56,12 +59,15 @@ class ErrorView: UIView {
         }
         
     }
+    ///Método para esconder a view de erro
     @objc
     func hideError() {
         viewController?.navigationController?.setNavigationBarHidden(false, animated: true)
         ErrorView.animate(withDuration: 2, delay: 0.5) {
             self.hideConstraint?.isActive = true
             self.showConstraint?.isActive = false
+        }completion: { _ in
+            self.isHidden = true
         }
     }
     

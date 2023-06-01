@@ -6,7 +6,7 @@
 //
 
 import Foundation
-
+///Modelo de Produto
 struct ProductModel: Decodable {
     var code: Int?
     var image: String?
