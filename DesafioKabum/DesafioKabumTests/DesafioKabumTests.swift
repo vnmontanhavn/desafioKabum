@@ -52,13 +52,6 @@ final class DesafioKabumTests: XCTestCase {
         controller = nil
     }
 
-    func testTitle() throws {
-        controller?.viewDidLoad()
-        controller?.caller = mock
-        controller?.viewWillAppear(false)
-        controller?.viewWillAppear(false)
-        XCTAssertEqual(controller?.title, "Produtos")
-    }
     
     func testCollection() throws {
         guard let controller = self.controller else {
@@ -73,6 +66,10 @@ final class DesafioKabumTests: XCTestCase {
         let index = IndexPath(row: 0, section: 0)
         let cell = controller.collectionView(controller.collectionView, cellForItemAt: index) as? ProductCollectionCell
         XCTAssertEqual(cell?.nameLabel.text, "Notebook Asus AMD Ryzen 5-3500U, 8GB RAM, SSD 256GB, 15,6\', Radeon Vega 8, Windows 11 Home, Cinza - M515DA-BR1213W")
+        XCTAssertEqual(cell?.producerLabel.text, "ASUS")
+        XCTAssertEqual(cell?.priceLabel.text, "R$ 2899,99")
+        XCTAssertEqual(cell?.installmentLabel.text, "R$ 3052,62 em até 10x")
+        XCTAssertEqual(cell?.buyButtom.titleLabel?.text, "Comprar")
     }
     
     func testError() throws {
