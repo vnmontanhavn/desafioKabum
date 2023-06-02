@@ -14,4 +14,5 @@ struct CellViewModel {
     let discountPrice: String?
     let discount: String?
     let rating: Int?
+    let producer: String?
 }

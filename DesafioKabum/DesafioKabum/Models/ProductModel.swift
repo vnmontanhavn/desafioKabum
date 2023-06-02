@@ -36,4 +36,7 @@ struct ProductModel: Decodable {
 
 struct ProducerModel: Decodable {
     var name: String?
+    private enum CodingKeys: String, CodingKey {
+        case name = "nome"
+    }
 }

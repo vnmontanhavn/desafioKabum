@@ -59,7 +59,7 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     
     ///Método para criar o ViewModel da célula com base nas informações do produto.
     func viewModelFrom(model: ProductModel) -> CellViewModel{
-        return CellViewModel(name: model.name, url: imageURLs(urlStr: model.image), fullPrice: model.price, discountPrice: model.discountPrice, discount: model.percentDiscount, rating: model.reviewScore)
+        return CellViewModel(name: model.name, url: imageURLs(urlStr: model.image), fullPrice: model.price, discountPrice: model.discountPrice, discount: model.percentDiscount, rating: model.reviewScore, producer: model.producer?.name)
     }
     
     ///Metodo feito com o intuito de resolver possiveis problemas ao gerar uma URL, visto que o sistema prefere urls seguras.(https)
