@@ -22,12 +22,13 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = "Produtos"
-        self.view.backgroundColor = UIColor(hex: 0xFAFAFB)
+        self.view.backgroundColor = UIColor(hex: 0x285EAB)
+        self.navigationController?.navigationBar.backgroundColor = UIColor(hex: 0x285EAB)
         self.view.addSubview(indicator)
         indicator.hidesWhenStopped = true
         setupCollectionView()
         setupConstraints()
+        addNavigationIcon()
         caller = ListCaller(delegate: self)
         errorView.setup(viewController: self)
     }
@@ -36,6 +37,23 @@ class ViewController: UIViewController {
         startLoading()
         self.caller?.callList(page: ViewController.page)
     }
+    
+    func addNavigationIcon() {
+        let icon = UIImageView(image: UIImage(named: "kabum"))
+        guard let naviBar = self.navigationController?.navigationBar else {
+            return
+        }
+        icon.contentMode = .scaleAspectFit
+        naviBar.addSubview(icon)
+        icon.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            icon.centerYAnchor.constraint(equalTo: naviBar.centerYAnchor),
+            icon.centerXAnchor.constraint(equalTo: naviBar.centerXAnchor),
+            icon.heightAnchor.constraint(equalTo: naviBar.heightAnchor, multiplier: 1)
+            ])
+        
+    }
+    
     ///Faz as configurações da collectionview e a coloca na view
     func setupCollectionView() {
         collectionView.delegate = self
@@ -45,7 +63,7 @@ class ViewController: UIViewController {
         collectionView.register(IndicatorCollectionFooterView.self,
                                 forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter,
                                 withReuseIdentifier: IndicatorCollectionFooterView.identifier)
-        collectionView.backgroundColor = .clear
+        self.collectionView.backgroundColor = UIColor(hex: 0xFAFAFB)
         self.view.addSubview(collectionView)
         
     }
@@ -53,7 +71,7 @@ class ViewController: UIViewController {
     func setupConstraints(){
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            collectionView.topAnchor.constraint(equalTo: view.topAnchor),
+            collectionView.topAnchor.constraint(equalTo: view.topAnchor,constant:60),
             collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             collectionView.leftAnchor.constraint(equalTo: view.leftAnchor),
             collectionView.rightAnchor.constraint(equalTo: view.rightAnchor)
