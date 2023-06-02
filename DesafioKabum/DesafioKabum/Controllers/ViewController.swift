@@ -37,12 +37,15 @@ class ViewController: UIViewController {
         startLoading()
         self.caller?.callList(page: ViewController.page)
     }
-    
+    //método para colocar o icone na navigation e configura aparencia dela
     func addNavigationIcon() {
         let icon = UIImageView(image: UIImage(named: "kabum"))
+        let appearance = UINavigationBarAppearance()
         guard let naviBar = self.navigationController?.navigationBar else {
             return
         }
+        appearance.configureWithTransparentBackground()
+        naviBar.standardAppearance = appearance
         icon.contentMode = .scaleAspectFit
         naviBar.addSubview(icon)
         icon.translatesAutoresizingMaskIntoConstraints = false

@@ -62,7 +62,29 @@ class ProductCollectionCell: UICollectionViewCell {
         buyButtom.layer.cornerRadius = 6
         likeButton.setImage(UIImage(named: "coracao"), for: .normal)
         cartButton.setImage(UIImage(named: "carrinho"), for: .normal)
+        buyButtom.addTarget(self, action: #selector(buyButtonAction), for: .touchUpInside)
+        likeButton.addTarget(self, action: #selector(likeButtonAction), for: .touchUpInside)
+        cartButton.addTarget(self, action: #selector(cartButtonAction), for: .touchUpInside)
     }
+    @objc
+    func buyButtonAction() {
+        ///Mudaria cor do botão e incluiria view de contador.
+        ///Usando um protocolo, adicionaria o produto no carrinho e faria um push para tela do carrinho.
+        print("coloca item no carrinho e abre tela de carrinho")
+    }
+    @objc
+    func likeButtonAction() {
+        ///Mudaria a cor do botão
+        ///usando um protocolo chamando um método que faria a chamada na api ou disparo no GA apontando o interesse do usuario no item.
+        print("da um like no item")
+    }
+    @objc
+    func cartButtonAction() {
+        ///Mudaria cor do botão e incluiria view de contador.
+        ///Usando um protocolo, adicionaria o produto no carrinho.
+        print("coloca item no carrinho")
+    }
+    
     
     //Faz o setup das imagens. Sendo uma dinamica vinda da URL e a outra é a imagem da estrela das avaliações
     func imageSetup(url: URL?) {
