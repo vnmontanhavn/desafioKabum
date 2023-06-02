@@ -16,7 +16,7 @@ class ProductCollectionCell: UICollectionViewCell {
     let installmentLabel = UILabel()
     let buyButtom = UIButton()
     let likeButton = UIButton()
-    let CartButton = UIButton()
+    let cartButton = UIButton()
     var model: CellViewModel?
     
     ///Faz o setup quando receber a célula
@@ -37,7 +37,9 @@ class ProductCollectionCell: UICollectionViewCell {
         priceLabel.text = model.discountPrice
         producerLabel.text = model.producer
         installmentLabel.text = "\(model.fullPrice ?? "") em até 10x"
+        buyButtom.setTitle("Comprar", for: .normal)
         configLabels()
+        configButtons()
     }
     ///Configura aparencia das Labels
     func configLabels() {
@@ -51,6 +53,17 @@ class ProductCollectionCell: UICollectionViewCell {
         installmentLabel.font = UIFont(name: "Helvetica", size: 10)
         installmentLabel.textColor = .gray
     }
+    
+    func configButtons() {
+        buyButtom.backgroundColor = UIColor(hex: 0xED6F2D)
+        buyButtom.titleLabel?.textColor = .white
+        buyButtom.titleLabel?.font = UIFont(name: "Helvetica", size: 16)
+        buyButtom.layer.masksToBounds = false
+        buyButtom.layer.cornerRadius = 6
+        likeButton.setImage(UIImage(named: "coracao"), for: .normal)
+        cartButton.setImage(UIImage(named: "carrinho"), for: .normal)
+    }
+    
     //Faz o setup das imagens. Sendo uma dinamica vinda da URL e a outra é a imagem da estrela das avaliações
     func imageSetup(url: URL?) {
         imageView.translatesAutoresizingMaskIntoConstraints = false
@@ -70,6 +83,9 @@ class ProductCollectionCell: UICollectionViewCell {
         self.contentView.addSubview(priceLabel)
         self.contentView.addSubview(producerLabel)
         self.contentView.addSubview(installmentLabel)
+        self.contentView.addSubview(buyButtom)
+        self.contentView.addSubview(likeButton)
+        self.contentView.addSubview(cartButton)
     }
     //Configura as constraints
     func setupConstrents() {
@@ -78,12 +94,18 @@ class ProductCollectionCell: UICollectionViewCell {
         priceLabel.translatesAutoresizingMaskIntoConstraints = false
         producerLabel.translatesAutoresizingMaskIntoConstraints = false
         installmentLabel.translatesAutoresizingMaskIntoConstraints = false
+        buyButtom.translatesAutoresizingMaskIntoConstraints = false
+        likeButton.translatesAutoresizingMaskIntoConstraints = false
+        cartButton.translatesAutoresizingMaskIntoConstraints = false
         var constraints: [NSLayoutConstraint] = []
         constraints.append(contentsOf: setupConstraintImageView())
         constraints.append(contentsOf: setupContraintProducerLabel())
         constraints.append(contentsOf: setupConstraintNameLabel())
         constraints.append(contentsOf: setupConstraintPriceLabel())
         constraints.append(contentsOf: setupConstraintinstallmentLabel())
+        constraints.append(contentsOf: setupConstraintBuyButtom())
+        constraints.append(contentsOf: setupConstraintCartButtom())
+        constraints.append(contentsOf: setupConstraintLikeButtom())
         NSLayoutConstraint.activate(constraints)
     }
     
@@ -117,6 +139,30 @@ class ProductCollectionCell: UICollectionViewCell {
         return [installmentLabel.topAnchor.constraint(equalTo: priceLabel.bottomAnchor),
                 installmentLabel.leftAnchor.constraint(equalTo: priceLabel.leftAnchor),
                 installmentLabel.rightAnchor.constraint(equalTo: rightAnchor, constant: -8)
+        ]
+    }
+    
+    func setupConstraintBuyButtom() -> [NSLayoutConstraint]  {
+        return [buyButtom.topAnchor.constraint(equalTo: installmentLabel.bottomAnchor, constant: 15),
+                buyButtom.leftAnchor.constraint(equalTo: priceLabel.leftAnchor),
+                buyButtom.heightAnchor.constraint(equalToConstant: 24)
+        ]
+    }
+    
+    func setupConstraintCartButtom() -> [NSLayoutConstraint]  {
+        return [cartButton.centerYAnchor.constraint(equalTo: buyButtom.centerYAnchor),
+                cartButton.leftAnchor.constraint(equalTo: likeButton.rightAnchor, constant: 4),
+                cartButton.rightAnchor.constraint(equalTo: rightAnchor, constant: -8),
+                cartButton.heightAnchor.constraint(equalToConstant: 28),
+                cartButton.widthAnchor.constraint(equalTo: cartButton.heightAnchor, multiplier: 1)
+        ]
+    }
+    
+    func setupConstraintLikeButtom() -> [NSLayoutConstraint]  {
+        return [likeButton.centerYAnchor.constraint(equalTo: buyButtom.centerYAnchor),
+                likeButton.leftAnchor.constraint(equalTo: buyButtom.rightAnchor, constant: 8),
+                likeButton.heightAnchor.constraint(equalToConstant: 16),
+                likeButton.widthAnchor.constraint(equalTo: cartButton.heightAnchor, multiplier: 1, constant: -6)
         ]
     }
     
