@@ -13,19 +13,17 @@ class ViewController: UIViewController {
             frame: .zero,
             collectionViewLayout: ProductsFlowLayout()
         )
-    lazy var indicator: UIActivityIndicatorView = UIActivityIndicatorView(style: .large)
     lazy var errorView = ErrorView()
     var caller: CallerProtocol?
     var products: [ProductModel] = []
     var stop = false
     static var page = 1
+    var activityDelegate: ActivityProtocol?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor(hex: 0x285EAB)
         self.navigationController?.navigationBar.backgroundColor = UIColor(hex: 0x285EAB)
-        self.view.addSubview(indicator)
-        indicator.hidesWhenStopped = true
         setupCollectionView()
         setupConstraints()
         addNavigationIcon()
@@ -106,14 +104,14 @@ extension ViewController: CallResponseDelegate {
 ///Metodos para facilitar o uso do Activity Indicator
 extension ViewController: ActivityProtocol {
     func startLoading() {
-        indicator.startAnimating()
+        activityDelegate?.startLoading()
     }
     
     func stopLoading() {
-        indicator.stopAnimating()
+        activityDelegate?.stopLoading()
     }
     
     func isLoading() -> Bool {
-        return indicator.isAnimating
+        return activityDelegate?.isLoading() ?? false
     }
 }

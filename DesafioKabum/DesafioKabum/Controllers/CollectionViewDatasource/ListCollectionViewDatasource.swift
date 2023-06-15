@@ -46,12 +46,7 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource {
             guard let footerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "footer", for: indexPath) as? IndicatorCollectionFooterView else {
                 return UICollectionReusableView()
             }
-            footerView.addSubview(indicator)
-            indicator.translatesAutoresizingMaskIntoConstraints = false
-            NSLayoutConstraint.activate([
-                self.indicator.centerXAnchor.constraint(equalTo: footerView.centerXAnchor),
-                self.indicator.centerYAnchor.constraint(equalTo: footerView.centerYAnchor)
-                ])
+            self.activityDelegate = footerView
             return footerView
         }
         return UICollectionReusableView()
