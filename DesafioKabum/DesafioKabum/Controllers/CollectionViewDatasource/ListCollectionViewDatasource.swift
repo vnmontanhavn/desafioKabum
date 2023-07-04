@@ -27,6 +27,9 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     ///Caso houvesse uma tela de detalhes aqui seria onde implementaria o push para tela de detalhes.
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         //Ação de toque para abrir tela de detalhes.
+        let view = PdfPreviewController()
+        self.navigationController?.pushViewController(view, animated: true)
+        
     }
     
     ///Esse método serve para identificar quando estamos para chegar no fim da pagina
